@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Commissioner Purity Test Result</title>
+    <style>
+        body {
+            font-family: "Times New Roman", Times, serif;
+            margin: 0;
+            padding: 20px; /* Padding to give some space around the content */
+            background-color: #f5deb3; /* Parchment-like color */
+            color: black; /* Black text color */
+            font-size: 12px; /* Smaller font size */
+            text-align: center; /* Center align all text */
+        }
+        h1 {
+            font-size: 24px; /* Smaller font size for heading */
+        }
+        #score {
+            font-size: 48px; /* Large font size for the score */
+            color: red; /* Red color for the score */
+            margin-bottom: 20px; /* Space below the score */
+        }
+        #blurb {
+            font-size: 16px; /* Font size for the blurb */
+        }
+    </style>
+</head>
+<body data-extension-installed="2.4.0">
+    <h1>Your Commissioner Purity Test Result</h1>
+    <div id="score">Your Score: 0</div>
+    <div id="blurb">You're pretty pure! Keep it up!</div>
+    <script>
+        function getQueryParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        function getBlurb(score) {
+            if (score <= 20) {
+                return "You're pretty pure! Keep it up!";
+            } else if (score <= 40) {
+                return "You're still relatively pure but have commissioned a good amount.";
+            } else if (score <= 60) {
+                return "You've commissioned art for a good while and experienced a lot.";
+            } else if (score <= 80) {
+                return "Somebody better check in on your commissioning antics.";
+            } else if (score <= 99) {
+                return "You should be worried...";
+            } else if (score == 100) {
+                return "Hi there, Eric!";
+            }
+            else {
+                return "Yo mama"
+            }
+        }
+
+        const score = getQueryParameter('score');
+        document.getElementById('score').textContent = `Your Score: ${score}`;
+        document.getElementById('blurb').textContent = getBlurb(score);
+    </script>
+
+
+</body></html>

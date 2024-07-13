@@ -1,2 +1,2 @@
-# commissionerpuritytest
-Commissioner Purity Test
+# thecommissionerpuritytest
+The Commissioner Purity Test

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Commissioner Rice Purity Test</title>
+    <style>
+        body {
+            font-family: "Times New Roman", Times, serif;
+            margin: 0;
+            padding: 20px; /* Padding to give some space around the content */
+            background-color: #f5deb3; /* Parchment-like color */
+            color: black; /* Black text color */
+            font-size: 14px; /* Smaller font size */
+        }
+        h1 {
+            text-align: center;
+            font-size: 24px; /* Smaller font size for heading */
+        }
+        p {
+            text-align: center;
+            font-size: 16px; /* Slightly larger font size for the blurb */
+            margin-bottom: 20px; /* Space below the blurb */
+        }
+        ol {
+            padding-left: 20px; /* Indent for the list */
+        }
+        .question {
+            margin: 2px 0; /* Smaller margin */
+        }
+        button {
+            display: block;
+            width: 80px; /* Smaller width for square shape */
+            height: 40px; /* Set height to make it square */
+            background: grey; /* Grey background */
+            color: white; /* White text color */
+            border: 1px solid #ccc; /* Light grey border */
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer;
+            font-size: 16px; /* Smaller font size */
+            margin: 20px auto; /* Center the button horizontally */
+            text-align: center;
+        }
+        button:hover {
+            background: #666; /* Darker grey on hover */
+        }
+    </style>
+</head>
+<body data-extension-installed="2.4.0">
+    <h1>The Commissioner Rice Purity Test</h1>
+    <p>The Commissioner Rice Purity Test is an opportunity to bond over shared (and not-so-shared) degeneracy. Your score determines how far gone you are and how much you have experienced. If you did it, admit it!</p>
+    <ol id="questions-list">
+        <!-- Questions will be inserted here -->
+    </ol>
+    <button onclick="calculateScore()">Submit</button>
+    <script>
+        const questions = [
+            "Have you commissioned artwork before?",
+            "Have you commissioned artwork in the past 2 years?",
+            "Have you commissioned artwork in the past year?",
+            "Have you commissioned artwork in the past 6 months?",
+            "Have you commissioned artwork in the past month?",
+            "Have you been commissioning for more than 1 year?",
+            "Have you been commissioning for more than 2 years?",
+            "Have you been commissioning for more than 5 years?",
+            "Have you been commissioning for more than 10 years?",
+            "Have you commissioned by email before?",
+            "Have you commissioned on Twitter before?",
+            "Have you commissioned on Skeb before?",
+            "Have you commissioned on Pixiv before?",
+            "Have you commissioned on VGen before?",
+            "Have you commissioned on Patreon before?",
+            "Have you commissioned on Instagram before?",
+            "Have you commissioned on Discord before?",
+            "Have you commissioned on Reddit before?",
+            "Have you commissioned on ko-fi before?",
+            "Have you commissioned on fiverr before?",
+            "Have you commissioned on another platform before?",
+            "Have you been Skeb-momented before (an artist delivers something different from your request with no opportunity for a retake on platform like Skeb or Pixiv where communicating with the artist is discouraged or not allowed)?",
+            "Have you commissioned monochrome artwork?",
+            "Have you commissioned full color artwork?",
+            "Have you commissioned bust artwork?",
+            "Have you commissioned half body artwork?",
+            "Have you commissioned full body artwork?",
+            "Have you commissioned a full illustration piece with full body character(s) and a detailed background?",
+            "Have you commissioned artwork with multiple variants/alts?",
+            "Have you commissioned NSFW artwork before?",
+            "Have you ever commissioned mecha artwork or artwork of a character with lots of armor?",
+            "Have you ever commissioned artwork of a crackship?",
+            "Have you ever commissioned furry artwork?",
+            "Have you ever commissioned light fetish artwork?",
+            "Have you ever commissioned extreme fetish artwork?",
+            "Have you been a part of a joint or group commission?",
+            "Have you ever gifted someone a commission?",
+            "Do you have have an OC that you commission artwork of?",
+            "Have you commissioned a character from a franchise you have not partaken in?",
+            "Have you commissioned more than 2 characters in one piece on your own?",
+            "Have you commissioned more than 3 characters in one piece on your own?",
+            "Have you commissioned more than 4 characters in one piece on your own?",
+            "Have you commissioned more than 5 characters in one piece on your own?",
+            "Have you commissioned more than 1 distinct character in total?",
+            "Have you commissioned more than 2 distinct characters in total?",
+            "Have you commissioned more than 5 distinct characters in total?",
+            "Have you commissioned more than 10 distinct characters in total?",
+            "Have you commissioned traditional/non-digital artwork before (on paper, canvas, etc.)?",
+            "Have you commissioned an emote before?",
+            "Have you commissioned a comic before?",
+            "Have you commissioned an animation before?",
+            "Have you commissioned a voiced animation before?",
+            "Have you commissioned a 3D sculpture (digial or physical) before?",
+            "Have you commissioned physical artwork that was shipped to you before (sculpture, doll, canvas painting, etc.)?",
+            "Have you gotten a YCH commission?",
+            "Have you gotten an auctioned commission?",
+            "Have you made a PayPal account specifically to commission artists?",
+            "Have you spent more than $50 USD on a single commission before?",
+            "Have you spent more than $100 USD on a single commission before?",
+            "Have you spent more than $200 USD on a single commission before?",
+            "Have you spent more than $500 USD on a single commission before?",
+            "Have you spent more than $1000 USD on a single commission before?",
+            "Have you ever tipped an artist more than 20%?",
+            "Have you gotten a refund for your commission payment for any reason (either manually through PayPal or automatically by a site like Skeb)?",
+            "Have you ever had more than 1 commission in progress at a given time?",
+            "Have you ever had more than 5 commissions in progress at a given time?",
+            "Have you ever had more than 10 commissions in progress at a given time?",
+            "Have you commissioned an artist more than once?",
+            "Have you ever commissioned an artist so much that you now enjoy special privileges?",
+            "Have you been scammed by an artist before (ghosted, incorrect delivery, traced/AI, etc.)?",
+            "Have you ever set an alarm for an artist opening commissions?",
+            "Have you commissioned an artist at an online or in-person convention?",
+            "Have you gotten one of your commissioned artwork signed by someone related to that artwork?",
+            "Has an artist monetized your commission before (Patreon paywall, sellable charm, poster, etc.)?",
+            "Have you commissioned an artist from North America?",
+            "Have you commissioned an artist from South America?",
+            "Have you commissioned an artist from Europe?",
+            "Have you commissioned an artist from Africa?",
+            "Have you commissioned an artist from Asia?",
+            "Have you commissioned an artist from Australia?",
+            "Have you commissioned an artist with more than 50k Twitter followers?",
+            "Have you commissioned an artist with more than 100k Twitter followers?",
+            "Have you commissioned an artist with more than 500k Twitter followers?",
+            "Have you commissioned an artist that ended up getting invovled in NFTs?",
+            "Have you waited longer than 6 months for a delivery?",
+            "Have you waited longer than 1 year for a delivery?",
+            "Have you waited longer than 2 years for a delivery?",
+            "Do you keep track of your commissions in a text file, document, or spreadsheet?",
+            "Do you host or back up your commissioned artwork in a website, image gallery, or Google Drive?",
+            "Have you created custom reference images that are more detailed than just images you found straight from the web?",
+            "Have you commissioned artwork that you keep private for yourself (this includes alts)?",
+            "Have you commissioned artwork that the artist requested that you keep private (this includes alts)?",
+            "Have you commissioned artwork and asked to be credited as anonymous?",
+            "Have you been recognized as the commissioner for so-and-so online?",
+            "Was that recognition by a fan?",
+            "Was that recognition by a hater?",
+            "Do your IRL friends know that you commission art?",
+            "Do your family members know that you commission art?",
+            "Do your coworkers know that you commission art?",
+            "Do you love commissioning art?"
+        ];
+
+        const questionsList = document.getElementById('questions-list');
+
+        questions.forEach(question => {
+            const listItem = document.createElement('li');
+            listItem.classList.add('question');
+            listItem.innerHTML = `
+                <label>
+                    <input type="checkbox"> ${question}
+                </label>
+            `;
+            questionsList.appendChild(listItem);
+        });
+
+        function calculateScore() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            let score = 0;
+            checkboxes.forEach(checkbox => {
+                if (checkbox.checked) {
+                    score += 1;
+                }
+            });
+            window.location.href = `results.html?score=${score}`;
+        }
+    </script>
+
+
+</body></html>
